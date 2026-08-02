@@ -8,7 +8,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScrollEvent = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 20);
     };
     
     window.addEventListener('scroll', handleScrollEvent);
@@ -40,16 +40,23 @@ const Navbar = () => {
     <header className={`navbar-container ${isScrolled ? 'scrolled' : ''}`}>
       <div className="container navbar">
         <a href="#home" className="logo" onClick={(e) => handleScroll(e, 'home')}>
-          <span className="script-font">Sashtii</span>
-          <span className="logo-subtext">ATELIER</span>
+          <span className="logo-text">Sashtii</span>
+          <span className="logo-subtext">BOUTIQUE</span>
         </a>
 
         <nav className={`nav-links ${isOpen ? 'open' : ''}`}>
-          <a href="#home" onClick={(e) => handleScroll(e, 'home')}>Home</a>
-          <a href="#about" onClick={(e) => handleScroll(e, 'about')}>Philosophy</a>
-          <a href="#process" onClick={(e) => handleScroll(e, 'process')}>Process</a>
-          <a href="#lookbook" onClick={(e) => handleScroll(e, 'lookbook')}>Lookbook</a>
+          <a href="#home" onClick={(e) => handleScroll(e, 'home')}>Shop</a>
+          <span className="nav-separator">|</span>
+          <a href="#lookbook" onClick={(e) => handleScroll(e, 'lookbook')}>Collections</a>
+          <span className="nav-separator">|</span>
+          <a href="#process" onClick={(e) => handleScroll(e, 'process')}>Our Story</a>
+          <span className="nav-separator">|</span>
+          <a href="#about" onClick={(e) => handleScroll(e, 'about')}>Contact</a>
         </nav>
+
+        <div className="nav-icons">
+          {/* Icons omitted to keep layout clean and match bespoke style */}
+        </div>
 
         <button className="mobile-menu-btn" onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? <X size={24} /> : <Menu size={24} />}

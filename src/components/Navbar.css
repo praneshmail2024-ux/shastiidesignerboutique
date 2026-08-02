@@ -1,55 +1,85 @@
 .navbar-container {
   background-color: transparent;
   position: fixed;
-  width: 100%;
+  width: 70%; /* Match app-content width */
+  margin: 0 auto;
+  left: 0;
+  right: 0;
   top: 0;
   z-index: 1000;
-  transition: background-color 0.4s ease, border-bottom 0.4s ease;
-  border-bottom: 1px solid transparent;
+  transition: background-color 0.4s ease, box-shadow 0.4s ease;
+  padding: 1.5rem 0;
+}
+
+@media (max-width: 1024px) {
+  .navbar-container { width: 100%; }
 }
 
 .navbar-container.scrolled {
-  background-color: var(--color-primary);
-  border-bottom: 1px solid var(--color-gold-dim);
+  background-color: rgba(246, 230, 230, 0.95); /* Blush with slight transparency */
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  padding: 1rem 0;
+  backdrop-filter: blur(10px);
 }
 
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
 }
 
 .logo {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+  flex: 1;
 }
 
-.logo .script-font {
-  font-size: 2.5rem;
+.logo-text {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
   line-height: 1;
   color: var(--color-gold);
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 .logo-subtext {
   font-family: var(--font-body);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   letter-spacing: 4px;
   color: var(--color-text);
   text-transform: uppercase;
+  margin-top: 5px;
 }
 
 .nav-links {
   display: flex;
-  gap: 2.5rem;
+  align-items: center;
+  gap: 1.5rem;
+  flex: 2;
+  justify-content: center;
 }
 
 .nav-links a {
-  font-weight: 300;
+  font-family: var(--font-body);
+  font-weight: 400;
   text-transform: uppercase;
-  font-size: 0.9rem;
-  letter-spacing: 2px;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  color: var(--color-text);
+}
+
+.nav-separator {
+  color: var(--color-gold);
+  font-weight: 300;
+  opacity: 0.5;
+}
+
+.nav-icons {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .mobile-menu-btn {
@@ -60,7 +90,7 @@
   color: var(--color-text);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .nav-links {
     display: none;
     flex-direction: column;
@@ -70,13 +100,18 @@
     width: 100%;
     background-color: var(--color-primary);
     padding: 2rem;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     text-align: center;
-    border-bottom: 1px solid var(--color-gold-dim);
+    border-top: 1px solid var(--color-gold-dim);
   }
 
   .nav-links.open {
     display: flex;
+    gap: 1rem;
+  }
+  
+  .nav-separator {
+    display: none;
   }
 
   .mobile-menu-btn {
