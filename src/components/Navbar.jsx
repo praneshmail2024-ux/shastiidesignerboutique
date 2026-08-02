@@ -1,4 +1,3 @@
-import { Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import './Navbar.css';
 
@@ -59,7 +58,7 @@ const Navbar = () => {
         </div>
 
         <button className="mobile-menu-btn" onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
+          {isOpen ? "CLOSE" : "MENU"}
         </button>
       </div>
     </header>
