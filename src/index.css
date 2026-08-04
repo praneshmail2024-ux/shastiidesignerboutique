@@ -2,22 +2,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 
 :root {
-  /* Premium Dark Theme */
-  --color-primary: #121212; /* Deep dark background */
-  --color-secondary: #1e1e1e; /* Slightly lighter dark for cards/sections */
-  --color-blush-dark: #2a2a2a; /* Soft dark border/hover */
-  --color-text: #e0e0e0; /* Off-white text */
-  --color-text-muted: #a0a0a0; /* Muted text */
-  --color-gold: #d4af37; /* Premium Gold */
-  --color-gold-dim: rgba(212, 175, 55, 0.15);
+  /* Premium Light Pink & Gold Theme */
+  --color-primary: #fdf5f6; /* Very soft light pink background */
+  --color-secondary: #ffffff; /* Crisp white for cards/sections */
+  --color-blush-dark: #f3d9dd; /* Slightly darker pink for borders/hover */
+  --color-text: #4a3b3c; /* Elegant dark brown/charcoal for readability */
+  --color-text-muted: #8a7375; /* Muted text */
+  --color-gold: #c5a059; /* Warm Premium Gold */
+  --color-gold-dim: rgba(197, 160, 89, 0.15);
   
   --font-heading: 'Playfair Display', serif;
   --font-script: 'Great Vibes', cursive;
   --font-body: 'Inter', sans-serif;
   
-  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
-  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
-  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+  --shadow-sm: 0 4px 6px -1px rgba(197, 160, 89, 0.1);
+  --shadow-md: 0 10px 15px -3px rgba(197, 160, 89, 0.1);
+  --shadow-lg: 0 20px 25px -5px rgba(197, 160, 89, 0.15);
 }
 
 * {
@@ -40,18 +40,19 @@ body {
   overflow-x: hidden;
 }
 
-/* Floral Borders applied to the whole page - adjusting for dark theme */
+/* Floral Borders applied to the whole page - adjusting for light theme */
 .floral-border-left, .floral-border-right {
   position: fixed;
   top: 0;
   bottom: 0;
   width: 15%;
-  background-image: url('https://images.unsplash.com/photo-1579546929518-9e396f3cc809?q=80&w=1000&auto=format&fit=crop'); /* Placeholder dark floral */
+  background-image: url('https://images.unsplash.com/photo-1579546929518-9e396f3cc809?q=80&w=1000&auto=format&fit=crop'); /* Floral pattern */
   background-size: cover;
   background-position: center;
   background-repeat: repeat-y;
   z-index: 0;
-  opacity: 0.1; /* Very subtle in dark mode */
+  opacity: 0.15; /* Softly blended */
+  mix-blend-mode: multiply;
   pointer-events: none;
 }
 
@@ -84,7 +85,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   font-weight: 400;
   margin-bottom: 1rem;
-  color: #ffffff;
+  color: var(--color-text);
 }
 
 .script-font {
