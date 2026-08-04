@@ -9,12 +9,11 @@ import BookAppointment from './pages/BookAppointment';
 import Catalog from './pages/Catalog';
 import Cart from './pages/Cart';
 
+import CustomerProfile from './pages/CustomerProfile';
+
 // Placeholder components for Customer Portal
 const Login = () => <div className="container py-12" style={{paddingTop: '100px'}}><h1 className="text-gold">Login / Register</h1><p>Google Login integration pending...</p></div>;
-const ViewOrders = () => <div className="container py-12" style={{paddingTop: '100px'}}><h1 className="text-gold">My Orders</h1></div>;
-const Measurements = () => <div className="container py-12" style={{paddingTop: '100px'}}><h1 className="text-gold">My Measurements</h1></div>;
 const Payments = () => <div className="container py-12" style={{paddingTop: '100px'}}><h1 className="text-gold">Payments</h1></div>;
-const Profile = () => <div className="container py-12" style={{paddingTop: '100px'}}><h1 className="text-gold">My Profile</h1></div>;
 
 // Admin Portal Pages
 import AdminDashboard from './pages/admin/AdminDashboard';
@@ -41,11 +40,11 @@ function App() {
         <Route path="request-quote" element={<RequestQuote />} />
         <Route path="book-appointment" element={<BookAppointment />} />
         
-        {/* Protected Customer Routes (mock) */}
-        <Route path="orders" element={<ViewOrders />} />
-        <Route path="measurements" element={<Measurements />} />
+        {/* Protected Customer Routes */}
+        <Route path="orders" element={<CustomerProfile />} />
+        <Route path="measurements" element={<CustomerProfile />} />
         <Route path="payments" element={<Payments />} />
-        <Route path="profile" element={<Profile />} />
+        <Route path="profile" element={<CustomerProfile />} />
       </Route>
 
       {/* Admin Portal (Protected Routes) */}
