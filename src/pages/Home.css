@@ -22,7 +22,8 @@
   width: 100%;
   height: 80vh;
   object-fit: cover;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+  box-shadow: var(--shadow-lg);
+  border-radius: 4px;
 }
 
 .hero-right {
@@ -34,12 +35,13 @@
 }
 
 .hero-text-box {
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(30, 30, 30, 0.85);
   padding: 4rem;
   text-align: center;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-  backdrop-filter: blur(5px);
-  border: 1px solid rgba(255,255,255,0.8);
+  box-shadow: var(--shadow-md);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--color-gold-dim);
+  border-radius: 4px;
 }
 
 .hero-text-box h1 {
@@ -100,9 +102,11 @@
 .image-card {
   width: 100%;
   overflow: hidden;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-  background: white;
+  box-shadow: var(--shadow-md);
+  background: var(--color-secondary);
   padding: 8px;
+  border-radius: 4px;
+  border: 1px solid var(--color-blush-dark);
 }
 
 .image-card img {
@@ -134,15 +138,18 @@
 
 .product-card {
   text-align: center;
-  background: white;
+  background: var(--color-secondary);
   padding: 1rem;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+  box-shadow: var(--shadow-md);
+  border-radius: 4px;
+  border: 1px solid var(--color-blush-dark);
 }
 
 .product-img-wrapper {
   aspect-ratio: 4/5;
   margin-bottom: 1rem;
   overflow: hidden;
+  border-radius: 2px;
 }
 
 .product-img-wrapper img {
@@ -218,7 +225,7 @@
   font-size: 1.2rem;
   line-height: 1.8;
   margin-bottom: 2rem;
-  color: var(--color-text);
+  color: var(--color-text-muted);
 }
 
 .signature {
