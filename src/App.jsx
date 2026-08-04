@@ -10,9 +10,9 @@ import Catalog from './pages/Catalog';
 import Cart from './pages/Cart';
 
 import CustomerProfile from './pages/CustomerProfile';
+import Login from './pages/Login';
 
 // Placeholder components for Customer Portal
-const Login = () => <div className="container py-12" style={{paddingTop: '100px'}}><h1 className="text-gold">Login / Register</h1><p>Google Login integration pending...</p></div>;
 const Payments = () => <div className="container py-12" style={{paddingTop: '100px'}}><h1 className="text-gold">Payments</h1></div>;
 
 // Admin Portal Pages
