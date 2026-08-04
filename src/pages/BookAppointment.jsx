@@ -34,7 +34,7 @@ const BookAppointment = () => {
         <form onSubmit={handleBook}>
           
           <div style={{ marginBottom: '2rem' }}>
-            <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--color-gold)', fontSize: '1.2rem' }}>
+            <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--primary-container)', fontSize: '1.2rem' }}>
               <CalendarIcon size={20} /> Select Date
             </h3>
             <input 
@@ -47,7 +47,7 @@ const BookAppointment = () => {
           </div>
 
           <div style={{ marginBottom: '2rem' }}>
-            <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--color-gold)', fontSize: '1.2rem' }}>
+            <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--primary-container)', fontSize: '1.2rem' }}>
               <Clock size={20} /> Select Time
             </h3>
             <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginTop: '1rem' }}>
@@ -58,10 +58,10 @@ const BookAppointment = () => {
                   onClick={() => setSelectedTime(time)}
                   style={{
                     padding: '0.8rem 1.5rem',
-                    backgroundColor: selectedTime === time ? 'var(--color-gold)' : 'transparent',
-                    color: selectedTime === time ? 'var(--color-primary)' : 'var(--color-text)',
-                    border: `1px solid ${selectedTime === time ? 'var(--color-gold)' : 'var(--color-blush-dark)'}`,
-                    borderRadius: '4px',
+                    backgroundColor: selectedTime === time ? 'var(--primary-container)' : 'transparent',
+                    color: selectedTime === time ? 'var(--on-primary-container)' : 'var(--on-surface)',
+                    border: `1px solid ${selectedTime === time ? 'var(--primary-container)' : 'var(--outline-variant)'}`,
+                    borderRadius: 'var(--radius-default)',
                     cursor: 'pointer',
                     transition: 'all 0.3s'
                   }}
@@ -73,7 +73,7 @@ const BookAppointment = () => {
           </div>
 
           <div style={{ marginBottom: '2rem' }}>
-            <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--color-gold)', fontSize: '1.2rem' }}>
+            <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--primary-container)', fontSize: '1.2rem' }}>
               <User size={20} /> Your Details
             </h3>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginTop: '1rem' }}>

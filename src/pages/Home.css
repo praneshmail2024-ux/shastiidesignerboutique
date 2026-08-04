@@ -3,7 +3,7 @@
   display: flex;
   min-height: 85vh;
   margin-top: 100px;
-  background-color: var(--color-primary);
+  background-color: transparent;
   max-width: 1400px;
   margin-left: auto;
   margin-right: auto;
@@ -22,8 +22,8 @@
   width: 100%;
   height: 80vh;
   object-fit: cover;
-  box-shadow: var(--shadow-lg);
-  border-radius: 4px;
+  box-shadow: var(--shadow-ambient);
+  border-radius: var(--radius-default);
 }
 
 .hero-right {
@@ -35,18 +35,18 @@
 }
 
 .hero-text-box {
-  background-color: rgba(255, 255, 255, 0.85);
+  background-color: rgba(250, 249, 246, 0.7); /* Surface color with transparency */
   padding: 4rem;
   text-align: center;
-  box-shadow: var(--shadow-md);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--color-gold-dim);
-  border-radius: 4px;
+  box-shadow: var(--shadow-ambient);
+  backdrop-filter: blur(12px);
+  border: none;
+  border-radius: var(--radius-default);
 }
 
 .hero-text-box h1 {
   font-size: 3.5rem;
-  color: var(--color-gold);
+  color: var(--on-surface);
   line-height: 1.2;
   margin-bottom: 1.5rem;
   text-transform: uppercase;
@@ -55,7 +55,7 @@
 
 .hero-text-box p {
   font-size: 1.2rem;
-  color: var(--color-text);
+  color: var(--on-surface-variant);
   margin-bottom: 2.5rem;
 }
 
@@ -91,8 +91,8 @@
 
 .col-title {
   text-align: center;
-  font-family: var(--font-heading);
-  color: var(--color-text);
+  font-family: var(--font-display);
+  color: var(--on-surface);
   text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 1.4rem;
@@ -102,11 +102,11 @@
 .image-card {
   width: 100%;
   overflow: hidden;
-  box-shadow: var(--shadow-md);
-  background: var(--color-secondary);
+  box-shadow: var(--shadow-ambient);
+  background: var(--surface-container-lowest);
   padding: 8px;
-  border-radius: 4px;
-  border: 1px solid var(--color-blush-dark);
+  border-radius: var(--radius-default);
+  border: none;
 }
 
 .image-card img {
@@ -138,18 +138,18 @@
 
 .product-card {
   text-align: center;
-  background: var(--color-secondary);
+  background: var(--surface-container-lowest);
   padding: 1rem;
-  box-shadow: var(--shadow-md);
-  border-radius: 4px;
-  border: 1px solid var(--color-blush-dark);
+  box-shadow: var(--shadow-ambient);
+  border-radius: var(--radius-default);
+  border: none;
 }
 
 .product-img-wrapper {
   aspect-ratio: 4/5;
   margin-bottom: 1rem;
   overflow: hidden;
-  border-radius: 2px;
+  border-radius: var(--radius-sm);
 }
 
 .product-img-wrapper img {
@@ -159,10 +159,10 @@
 }
 
 .product-name {
-  font-family: var(--font-heading);
+  font-family: var(--font-display);
   font-size: 1.1rem;
   margin-bottom: 1rem;
-  color: var(--color-text);
+  color: var(--on-surface);
 }
 
 .small-btn {
@@ -203,14 +203,14 @@
   content: '';
   width: 60px;
   height: 1px;
-  background-color: var(--color-gold);
+  background-color: var(--primary-container);
 }
 
 .title-divider::before { margin-right: 15px; }
 .title-divider::after { margin-left: 15px; }
 
 .divider-icon {
-  color: var(--color-gold);
+  color: var(--primary-container);
   font-size: 1.5rem;
 }
 
@@ -225,7 +225,7 @@
   font-size: 1.2rem;
   line-height: 1.8;
   margin-bottom: 2rem;
-  color: var(--color-text-muted);
+  color: var(--on-surface-variant);
 }
 
 .signature {

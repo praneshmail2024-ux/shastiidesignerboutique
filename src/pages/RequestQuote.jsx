@@ -38,22 +38,22 @@ const RequestQuote = () => {
       <form onSubmit={handleSubmit} className="card animate-fade-up" style={{ animationDelay: '0.2s' }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '1.5rem' }}>
           <div>
-            <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--color-text)' }}>Full Name</label>
+            <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--on-surface-variant)' }}>Full Name</label>
             <input type="text" name="name" value={formData.name} onChange={handleChange} required placeholder="Eleanor Vance" />
           </div>
           <div>
-            <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--color-text)' }}>Email Address</label>
+            <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--on-surface-variant)' }}>Email Address</label>
             <input type="email" name="email" value={formData.email} onChange={handleChange} required placeholder="eleanor@example.com" />
           </div>
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '1.5rem' }}>
           <div>
-            <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--color-text)' }}>Phone Number</label>
+            <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--on-surface-variant)' }}>Phone Number</label>
             <input type="tel" name="phone" value={formData.phone} onChange={handleChange} required placeholder="+1 (555) 000-0000" />
           </div>
           <div>
-            <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--color-text)' }}>Garment Type</label>
+            <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--on-surface-variant)' }}>Garment Type</label>
             <select name="garmentType" value={formData.garmentType} onChange={handleChange}>
               <option value="Bridal">Bridal</option>
               <option value="Evening Wear">Evening Wear</option>
@@ -66,17 +66,17 @@ const RequestQuote = () => {
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '1.5rem' }}>
           <div>
-            <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--color-text)' }}>Expected Timeline</label>
+            <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--on-surface-variant)' }}>Expected Timeline</label>
             <input type="text" name="timeline" value={formData.timeline} onChange={handleChange} placeholder="e.g. 3 Months" />
           </div>
           <div>
-            <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--color-text)' }}>Estimated Budget</label>
+            <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--on-surface-variant)' }}>Estimated Budget</label>
             <input type="text" name="budget" value={formData.budget} onChange={handleChange} placeholder="e.g. $2,000 - $5,000" />
           </div>
         </div>
 
         <div style={{ marginBottom: '2rem' }}>
-          <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--color-text)' }}>Design Details & Inspiration</label>
+          <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--on-surface-variant)' }}>Design Details & Inspiration</label>
           <textarea 
             name="details" 
             value={formData.details} 

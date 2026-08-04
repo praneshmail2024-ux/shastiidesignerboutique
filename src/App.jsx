@@ -6,6 +6,8 @@ import AdminLayout from './layouts/AdminLayout';
 import Home from './pages/Home';
 import RequestQuote from './pages/RequestQuote';
 import BookAppointment from './pages/BookAppointment';
+import Catalog from './pages/Catalog';
+import Cart from './pages/Cart';
 
 // Placeholder components for Customer Portal
 const Login = () => <div className="container py-12" style={{paddingTop: '100px'}}><h1 className="text-gold">Login / Register</h1><p>Google Login integration pending...</p></div>;
@@ -16,11 +18,11 @@ const Profile = () => <div className="container py-12" style={{paddingTop: '100p
 
 // Admin Portal Pages
 import AdminDashboard from './pages/admin/AdminDashboard';
+import CustomerManagement from './pages/admin/CustomerManagement';
+import ProductsCMS from './pages/admin/ProductsCMS';
 
 // Placeholder components for Admin Portal
-const CustomerManagement = () => <div><h1>Customer Management</h1></div>;
 const Billing = () => <div><h1>Billing & Invoices</h1></div>;
-const Products = () => <div><h1>Products & Categories</h1></div>;
 const Quotations = () => <div><h1>Quotations</h1></div>;
 const Orders = () => <div><h1>Order Tracking</h1></div>;
 const CMS = () => <div><h1>Website Content (CMS)</h1></div>;
@@ -33,6 +35,8 @@ function App() {
       {/* Customer Portal (Public / Authenticated Routes) */}
       <Route path="/" element={<MainLayout />}>
         <Route index element={<Home />} />
+        <Route path="catalog" element={<Catalog />} />
+        <Route path="cart" element={<Cart />} />
         <Route path="login" element={<Login />} />
         <Route path="request-quote" element={<RequestQuote />} />
         <Route path="book-appointment" element={<BookAppointment />} />
@@ -50,7 +54,7 @@ function App() {
         <Route index element={<AdminDashboard />} />
         <Route path="customers" element={<CustomerManagement />} />
         <Route path="billing" element={<Billing />} />
-        <Route path="products" element={<Products />} />
+        <Route path="products" element={<ProductsCMS />} />
         <Route path="quotations" element={<Quotations />} />
         <Route path="orders" element={<Orders />} />
         <Route path="cms" element={<CMS />} />
