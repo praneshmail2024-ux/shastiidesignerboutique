@@ -1,90 +1,89 @@
 import { useState } from 'react';
-import { Calendar as CalendarIcon, Clock, User } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const BookAppointment = () => {
-  const [selectedDate, setSelectedDate] = useState('');
-  const [selectedTime, setSelectedTime] = useState('');
+  const [formData, setFormData] = useState({
+    name: '', email: '', phone: '', date: '', time: '', type: '', notes: ''
+  });
 
-  const timeSlots = ["10:00 AM", "11:30 AM", "01:00 PM", "02:30 PM", "04:00 PM"];
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-  const handleBook = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if(!selectedDate || !selectedTime) {
-        alert("Please select a date and time");
-        return;
-    }
-    console.log("Appointment Booked:", { selectedDate, selectedTime });
-    alert(`Appointment confirmed for ${selectedDate} at ${selectedTime}. We look forward to seeing you.`);
+    alert('Appointment request submitted! We will contact you shortly.');
   };
 
   return (
-    <div className="container" style={{ padding: '6rem 2rem', maxWidth: '800px' }}>
-      <div className="section-title animate-fade-up">
-        <h2>Book a Consultation</h2>
-        <div className="title-divider">
-          <span className="divider-icon">❦</span>
-        </div>
-      </div>
-      
-      <p className="text-center text-gold mb-8 animate-fade-up" style={{ animationDelay: '0.1s' }}>
-        Schedule a private fitting and design session at our atelier.
-      </p>
+    <div style={{ paddingTop: '120px', paddingBottom: '80px', minHeight: '100vh' }}>
+      <div style={{ maxWidth: '600px', margin: '0 auto', padding: '0 var(--gutter)' }}>
+        <Link to="/" style={{
+          display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
+          fontFamily: 'var(--font-body)', fontSize: '0.75rem', fontWeight: 600,
+          letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--text-secondary)',
+          marginBottom: '2rem', textDecoration: 'none',
+        }}>← HOME</Link>
 
-      <div className="card animate-fade-up" style={{ animationDelay: '0.2s' }}>
-        <form onSubmit={handleBook}>
-          
+        <span className="gold-label" style={{ display: 'block', marginBottom: '0.5rem' }}>SCHEDULE A VISIT</span>
+        <h1 style={{ fontFamily: 'var(--font-display)', fontSize: '2.5rem', fontWeight: 400, marginBottom: '1rem' }}>
+          Book Appointment
+        </h1>
+        <p style={{ color: 'var(--text-secondary)', marginBottom: '3rem', lineHeight: 1.7 }}>
+          Visit our atelier for a private consultation. We will guide you through fabrics, designs, and measurements.
+        </p>
+
+        <form onSubmit={handleSubmit}>
           <div style={{ marginBottom: '2rem' }}>
-            <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--primary-container)', fontSize: '1.2rem' }}>
-              <CalendarIcon size={20} /> Select Date
-            </h3>
-            <input 
-              type="date" 
-              value={selectedDate} 
-              onChange={(e) => setSelectedDate(e.target.value)} 
-              required
-              style={{ padding: '1rem', marginTop: '1rem' }}
+            <label>FULL NAME</label>
+            <input type="text" name="name" value={formData.name} onChange={handleChange} required />
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', marginBottom: '2rem' }}>
+            <div>
+              <label>EMAIL</label>
+              <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+            </div>
+            <div>
+              <label>PHONE</label>
+              <input type="tel" name="phone" value={formData.phone} onChange={handleChange} required />
+            </div>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', marginBottom: '2rem' }}>
+            <div>
+              <label>PREFERRED DATE</label>
+              <input type="date" name="date" value={formData.date} onChange={handleChange} required />
+            </div>
+            <div>
+              <label>PREFERRED TIME</label>
+              <select name="time" value={formData.time} onChange={handleChange} required>
+                <option value="">Select time</option>
+                <option value="10:00 AM">10:00 AM</option>
+                <option value="11:00 AM">11:00 AM</option>
+                <option value="12:00 PM">12:00 PM</option>
+                <option value="2:00 PM">2:00 PM</option>
+                <option value="3:00 PM">3:00 PM</option>
+                <option value="4:00 PM">4:00 PM</option>
+              </select>
+            </div>
+          </div>
+          <div style={{ marginBottom: '2rem' }}>
+            <label>APPOINTMENT TYPE</label>
+            <select name="type" value={formData.type} onChange={handleChange} required>
+              <option value="">Select type</option>
+              <option value="bridal">Bridal Consultation</option>
+              <option value="fitting">Fitting Session</option>
+              <option value="alteration">Alterations</option>
+              <option value="styling">Personal Styling</option>
+            </select>
+          </div>
+          <div style={{ marginBottom: '3rem' }}>
+            <label>ADDITIONAL NOTES</label>
+            <textarea name="notes" rows={4} value={formData.notes} onChange={handleChange}
+              style={{ resize: 'vertical', borderBottom: '1px solid var(--border)' }}
             />
           </div>
-
-          <div style={{ marginBottom: '2rem' }}>
-            <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--primary-container)', fontSize: '1.2rem' }}>
-              <Clock size={20} /> Select Time
-            </h3>
-            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginTop: '1rem' }}>
-              {timeSlots.map(time => (
-                <button 
-                  key={time}
-                  type="button"
-                  onClick={() => setSelectedTime(time)}
-                  style={{
-                    padding: '0.8rem 1.5rem',
-                    backgroundColor: selectedTime === time ? 'var(--primary-container)' : 'transparent',
-                    color: selectedTime === time ? 'var(--on-primary-container)' : 'var(--on-surface)',
-                    border: `1px solid ${selectedTime === time ? 'var(--primary-container)' : 'var(--outline-variant)'}`,
-                    borderRadius: 'var(--radius-default)',
-                    cursor: 'pointer',
-                    transition: 'all 0.3s'
-                  }}
-                >
-                  {time}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div style={{ marginBottom: '2rem' }}>
-            <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--primary-container)', fontSize: '1.2rem' }}>
-              <User size={20} /> Your Details
-            </h3>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginTop: '1rem' }}>
-              <input type="text" placeholder="Full Name" required />
-              <input type="email" placeholder="Email Address" required />
-              <input type="tel" placeholder="Phone Number" required style={{ gridColumn: 'span 2' }} />
-            </div>
-          </div>
-
-          <button type="submit" className="btn btn-primary" style={{ width: '100%', padding: '1rem' }}>
-            Confirm Appointment
+          <button type="submit" className="btn btn-gold" style={{ width: '100%', padding: '1.1rem' }}>
+            Book Appointment
           </button>
         </form>
       </div>

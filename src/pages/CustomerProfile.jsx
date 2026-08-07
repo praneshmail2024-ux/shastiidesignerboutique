@@ -1,157 +1,123 @@
 import { useState } from 'react';
-import { User, Package, Scissors, Edit3 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const CustomerProfile = () => {
   const [activeTab, setActiveTab] = useState('orders');
 
+  const tabs = [
+    { id: 'orders', label: 'Orders' },
+    { id: 'measurements', label: 'Measurements' },
+    { id: 'profile', label: 'Profile' },
+  ];
+
   return (
-    <div className="container" style={{ paddingTop: '120px', minHeight: '80vh', maxWidth: '1000px' }}>
-      <div className="flex justify-between items-center mb-8 animate-fade-up">
-        <div>
-          <h2 style={{ color: 'var(--on-surface)' }}>Welcome, Eleanor</h2>
-          <p className="text-muted">Manage your bespoke orders and measurements.</p>
-        </div>
-        <button className="btn" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'transparent', border: '1px solid var(--outline-variant)' }}>
-          <Edit3 size={16} /> Edit Profile
-        </button>
-      </div>
+    <div style={{ paddingTop: '120px', paddingBottom: '80px', minHeight: '100vh' }}>
+      <div style={{ maxWidth: '900px', margin: '0 auto', padding: '0 var(--gutter)' }}>
+        <Link to="/" style={{
+          display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
+          fontFamily: 'var(--font-body)', fontSize: '0.75rem', fontWeight: 600,
+          letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--text-secondary)',
+          marginBottom: '2rem', textDecoration: 'none',
+        }}>← HOME</Link>
 
-      <div className="card flex p-0 animate-fade-up" style={{ animationDelay: '0.1s', overflow: 'hidden' }}>
-        {/* Sidebar Navigation */}
-        <div style={{ width: '250px', background: 'var(--surface-container-low)', borderRight: '1px solid var(--outline-variant)' }}>
-          <button 
-            className={`w-full flex items-center gap-3 p-4 text-left ${activeTab === 'orders' ? 'active-tab' : ''}`}
-            onClick={() => setActiveTab('orders')}
-            style={{ 
-              background: activeTab === 'orders' ? 'var(--primary-container)' : 'transparent',
-              color: activeTab === 'orders' ? 'var(--on-primary-container)' : 'var(--on-surface-variant)',
-              border: 'none', cursor: 'pointer', transition: 'all 0.3s'
-            }}
-          >
-            <Package size={18} /> My Orders
-          </button>
-          <button 
-            className={`w-full flex items-center gap-3 p-4 text-left ${activeTab === 'measurements' ? 'active-tab' : ''}`}
-            onClick={() => setActiveTab('measurements')}
-            style={{ 
-              background: activeTab === 'measurements' ? 'var(--primary-container)' : 'transparent',
-              color: activeTab === 'measurements' ? 'var(--on-primary-container)' : 'var(--on-surface-variant)',
-              border: 'none', cursor: 'pointer', transition: 'all 0.3s'
-            }}
-          >
-            <Scissors size={18} /> My Measurements
-          </button>
-          <button 
-            className={`w-full flex items-center gap-3 p-4 text-left ${activeTab === 'details' ? 'active-tab' : ''}`}
-            onClick={() => setActiveTab('details')}
-            style={{ 
-              background: activeTab === 'details' ? 'var(--primary-container)' : 'transparent',
-              color: activeTab === 'details' ? 'var(--on-primary-container)' : 'var(--on-surface-variant)',
-              border: 'none', cursor: 'pointer', transition: 'all 0.3s'
-            }}
-          >
-            <User size={18} /> Profile Details
-          </button>
+        <span className="gold-label" style={{ display: 'block', marginBottom: '0.5rem' }}>MY ACCOUNT</span>
+        <h1 style={{ fontFamily: 'var(--font-display)', fontSize: '2.5rem', fontWeight: 400, marginBottom: '0.5rem' }}>
+          Welcome, Eleanor
+        </h1>
+        <p style={{ color: 'var(--text-secondary)', marginBottom: '3rem' }}>
+          Manage your bespoke orders and saved measurements.
+        </p>
+
+        {/* Tabs */}
+        <div style={{
+          display: 'flex', gap: '0', borderBottom: '1px solid var(--border)', marginBottom: '3rem',
+        }}>
+          {tabs.map(tab => (
+            <button key={tab.id} onClick={() => setActiveTab(tab.id)} style={{
+              background: 'none', border: 'none', cursor: 'pointer',
+              padding: '1rem 2rem',
+              fontFamily: 'var(--font-body)', fontSize: '0.8rem', fontWeight: 600,
+              letterSpacing: '0.1em', textTransform: 'uppercase',
+              color: activeTab === tab.id ? 'var(--gold)' : 'var(--text-secondary)',
+              borderBottom: activeTab === tab.id ? '2px solid var(--gold)' : '2px solid transparent',
+              transition: 'all 0.3s',
+            }}>
+              {tab.label}
+            </button>
+          ))}
         </div>
 
-        {/* Content Area */}
-        <div style={{ flex: 1, padding: '2rem' }}>
-          
-          {activeTab === 'orders' && (
-            <div>
-              <h3 className="mb-4" style={{ fontFamily: 'var(--font-display)', color: 'var(--on-surface)' }}>Order History</h3>
-              <div style={{ border: '1px solid var(--outline-variant)', borderRadius: 'var(--radius-default)', overflow: 'hidden' }}>
-                <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
-                  <thead>
-                    <tr style={{ background: 'var(--surface-container-high)', borderBottom: '1px solid var(--outline-variant)' }}>
-                      <th style={{ padding: '1rem', color: 'var(--on-surface-variant)' }}>Order #</th>
-                      <th style={{ padding: '1rem', color: 'var(--on-surface-variant)' }}>Date</th>
-                      <th style={{ padding: '1rem', color: 'var(--on-surface-variant)' }}>Status</th>
-                      <th style={{ padding: '1rem', color: 'var(--on-surface-variant)' }}>Amount</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr style={{ borderBottom: '1px solid var(--outline-variant)' }}>
-                      <td style={{ padding: '1rem', color: 'var(--on-surface-variant)' }}>#ORD-092</td>
-                      <td style={{ padding: '1rem', color: 'var(--on-surface-variant)' }}>Oct 12, 2026</td>
-                      <td style={{ padding: '1rem' }}><span className="chip" style={{ background: 'var(--primary-container)', color: 'var(--on-primary-container)' }}>Processing</span></td>
-                      <td style={{ padding: '1rem', color: 'var(--on-surface-variant)' }}>$4,500.00</td>
-                    </tr>
-                    <tr>
-                      <td style={{ padding: '1rem', color: 'var(--on-surface-variant)' }}>#ORD-045</td>
-                      <td style={{ padding: '1rem', color: 'var(--on-surface-variant)' }}>Jun 05, 2026</td>
-                      <td style={{ padding: '1rem' }}><span className="chip" style={{ background: 'var(--surface-container-high)', color: 'var(--on-surface-variant)' }}>Completed</span></td>
-                      <td style={{ padding: '1rem', color: 'var(--on-surface-variant)' }}>$2,100.00</td>
-                    </tr>
-                  </tbody>
-                </table>
+        {/* Orders Tab */}
+        {activeTab === 'orders' && (
+          <div>
+            <div style={{ borderBottom: '1px solid var(--border)', padding: '1.5rem 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div>
+                <p style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', marginBottom: '0.25rem' }}>#ORD-092 — Bridal Lehenga</p>
+                <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Oct 12, 2026</p>
+              </div>
+              <div style={{ textAlign: 'right' }}>
+                <span style={{ fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--gold)', background: 'rgba(184,151,62,0.1)', padding: '0.3rem 0.75rem' }}>Processing</span>
+                <p style={{ fontSize: '0.95rem', marginTop: '0.5rem', color: 'var(--text-primary)', fontWeight: 500 }}>₹1,20,000</p>
               </div>
             </div>
-          )}
-
-          {activeTab === 'measurements' && (
-            <div>
-              <h3 className="mb-4" style={{ fontFamily: 'var(--font-display)', color: 'var(--on-surface)' }}>Saved Measurements</h3>
-              <p className="text-muted mb-6">These measurements are used by our atelier to craft your bespoke garments. Last updated on June 1st, 2026.</p>
-              
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
-                <div>
-                  <h4 className="mb-2" style={{ color: 'var(--primary-container)' }}>Upper Body</h4>
-                  <ul style={{ listStyle: 'none', padding: 0 }}>
-                    <li className="flex justify-between py-2 border-b" style={{ borderBottom: '1px solid var(--outline-variant)' }}>
-                      <span className="text-muted">Bust</span><span>34"</span>
-                    </li>
-                    <li className="flex justify-between py-2 border-b" style={{ borderBottom: '1px solid var(--outline-variant)' }}>
-                      <span className="text-muted">Waist</span><span>26"</span>
-                    </li>
-                    <li className="flex justify-between py-2 border-b" style={{ borderBottom: '1px solid var(--outline-variant)' }}>
-                      <span className="text-muted">Shoulder</span><span>15"</span>
-                    </li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="mb-2" style={{ color: 'var(--primary-container)' }}>Lower Body</h4>
-                  <ul style={{ listStyle: 'none', padding: 0 }}>
-                    <li className="flex justify-between py-2 border-b" style={{ borderBottom: '1px solid var(--outline-variant)' }}>
-                      <span className="text-muted">Hips</span><span>36"</span>
-                    </li>
-                    <li className="flex justify-between py-2 border-b" style={{ borderBottom: '1px solid var(--outline-variant)' }}>
-                      <span className="text-muted">Inseam</span><span>32"</span>
-                    </li>
-                  </ul>
-                </div>
+            <div style={{ borderBottom: '1px solid var(--border)', padding: '1.5rem 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div>
+                <p style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', marginBottom: '0.25rem' }}>#ORD-045 — Silk Saree</p>
+                <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Jun 05, 2026</p>
               </div>
-              
-              <button className="btn mt-8" style={{ background: 'transparent', border: '1px solid var(--outline-variant)' }}>Request Measurement Update</button>
-            </div>
-          )}
-
-          {activeTab === 'details' && (
-            <div>
-              <h3 className="mb-4" style={{ fontFamily: 'var(--font-display)', color: 'var(--on-surface)' }}>Profile Details</h3>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1rem' }}>
-                <div style={{ background: 'var(--surface-container-lowest)', padding: '1rem', borderRadius: '4px', border: '1px solid var(--outline-variant)' }}>
-                  <p className="text-muted" style={{ fontSize: '0.85rem', marginBottom: '0.25rem' }}>Full Name</p>
-                  <p style={{ fontWeight: '500' }}>Eleanor Vance</p>
-                </div>
-                <div style={{ background: 'var(--surface-container-lowest)', padding: '1rem', borderRadius: '4px', border: '1px solid var(--outline-variant)' }}>
-                  <p className="text-muted" style={{ fontSize: '0.85rem', marginBottom: '0.25rem' }}>Email Address</p>
-                  <p style={{ fontWeight: '500' }}>eleanor@example.com</p>
-                </div>
-                <div style={{ background: 'var(--surface-container-lowest)', padding: '1rem', borderRadius: '4px', border: '1px solid var(--outline-variant)' }}>
-                  <p className="text-muted" style={{ fontSize: '0.85rem', marginBottom: '0.25rem' }}>Phone Number</p>
-                  <p style={{ fontWeight: '500' }}>+1 (555) 010-0023</p>
-                </div>
-                <div style={{ background: 'var(--surface-container-lowest)', padding: '1rem', borderRadius: '4px', border: '1px solid var(--outline-variant)' }}>
-                  <p className="text-muted" style={{ fontSize: '0.85rem', marginBottom: '0.25rem' }}>Shipping Address</p>
-                  <p style={{ fontWeight: '500' }}>123 Botanical Ave, Suite 400<br/>New York, NY 10001</p>
-                </div>
+              <div style={{ textAlign: 'right' }}>
+                <span style={{ fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--text-muted)', background: 'var(--border-light)', padding: '0.3rem 0.75rem' }}>Completed</span>
+                <p style={{ fontSize: '0.95rem', marginTop: '0.5rem', color: 'var(--text-primary)', fontWeight: 500 }}>₹34,000</p>
               </div>
             </div>
-          )}
+          </div>
+        )}
 
-        </div>
+        {/* Measurements Tab */}
+        {activeTab === 'measurements' && (
+          <div>
+            <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem', fontSize: '0.9rem' }}>
+              Last updated: June 1, 2026
+            </p>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem' }}>
+              <div>
+                <h4 style={{ fontFamily: 'var(--font-body)', fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '1.5rem' }}>UPPER BODY</h4>
+                {[['Bust', '34"'], ['Waist', '26"'], ['Shoulder', '15"'], ['Sleeve', '23"']].map(([label, val]) => (
+                  <div key={label} style={{ display: 'flex', justifyContent: 'space-between', padding: '0.75rem 0', borderBottom: '1px solid var(--border-light)' }}>
+                    <span style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>{label}</span>
+                    <span style={{ fontWeight: 500, fontSize: '0.9rem' }}>{val}</span>
+                  </div>
+                ))}
+              </div>
+              <div>
+                <h4 style={{ fontFamily: 'var(--font-body)', fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '1.5rem' }}>LOWER BODY</h4>
+                {[['Hips', '36"'], ['Inseam', '32"'], ['Length', '40"']].map(([label, val]) => (
+                  <div key={label} style={{ display: 'flex', justifyContent: 'space-between', padding: '0.75rem 0', borderBottom: '1px solid var(--border-light)' }}>
+                    <span style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>{label}</span>
+                    <span style={{ fontWeight: 500, fontSize: '0.9rem' }}>{val}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Profile Tab */}
+        {activeTab === 'profile' && (
+          <div style={{ display: 'grid', gap: '1.5rem' }}>
+            {[
+              ['Full Name', 'Eleanor Vance'],
+              ['Email Address', 'eleanor@example.com'],
+              ['Phone Number', '+91 7338873316'],
+              ['Shipping Address', '123 Botanical Ave, Suite 400, Chennai, India'],
+            ].map(([label, value]) => (
+              <div key={label} style={{ padding: '1rem 0', borderBottom: '1px solid var(--border-light)' }}>
+                <p style={{ fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '0.5rem' }}>{label}</p>
+                <p style={{ fontWeight: 500, color: 'var(--text-primary)' }}>{value}</p>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

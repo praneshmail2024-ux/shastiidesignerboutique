@@ -1,14 +1,9 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const RequestQuote = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    garmentType: 'Bridal',
-    timeline: '',
-    budget: '',
-    details: ''
+    name: '', email: '', phone: '', garmentType: '', budget: '', timeline: '', details: ''
   });
 
   const handleChange = (e) => {
@@ -17,81 +12,89 @@ const RequestQuote = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Placeholder for submission logic
-    console.log("Quote requested:", formData);
-    alert("Thank you! Your quote request has been submitted to the Sashtii team.");
+    alert('Quote request submitted! Our team will get back to you within 24 hours.');
   };
 
   return (
-    <div className="container" style={{ padding: '6rem 2rem', maxWidth: '800px' }}>
-      <div className="section-title animate-fade-up">
-        <h2>Request a Quote</h2>
-        <div className="title-divider">
-          <span className="divider-icon">❦</span>
-        </div>
-      </div>
-      
-      <p className="text-center text-gold mb-8 animate-fade-up" style={{ animationDelay: '0.1s' }}>
-        Commission a custom masterpiece tailored to your vision.
-      </p>
+    <div style={{ paddingTop: '120px', paddingBottom: '80px', minHeight: '100vh' }}>
+      <div style={{ maxWidth: '600px', margin: '0 auto', padding: '0 var(--gutter)' }}>
+        <Link to="/" style={{
+          display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
+          fontFamily: 'var(--font-body)', fontSize: '0.75rem', fontWeight: 600,
+          letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--text-secondary)',
+          marginBottom: '2rem', textDecoration: 'none',
+        }}>← HOME</Link>
 
-      <form onSubmit={handleSubmit} className="card animate-fade-up" style={{ animationDelay: '0.2s' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '1.5rem' }}>
-          <div>
-            <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--on-surface-variant)' }}>Full Name</label>
-            <input type="text" name="name" value={formData.name} onChange={handleChange} required placeholder="Eleanor Vance" />
-          </div>
-          <div>
-            <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--on-surface-variant)' }}>Email Address</label>
-            <input type="email" name="email" value={formData.email} onChange={handleChange} required placeholder="eleanor@example.com" />
-          </div>
-        </div>
+        <span className="gold-label" style={{ display: 'block', marginBottom: '0.5rem' }}>GET A QUOTE</span>
+        <h1 style={{ fontFamily: 'var(--font-display)', fontSize: '2.5rem', fontWeight: 400, marginBottom: '1rem' }}>
+          Request Quote
+        </h1>
+        <p style={{ color: 'var(--text-secondary)', marginBottom: '3rem', lineHeight: 1.7 }}>
+          Tell us about your dream garment and we will provide a detailed estimate within 24 hours.
+        </p>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '1.5rem' }}>
-          <div>
-            <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--on-surface-variant)' }}>Phone Number</label>
-            <input type="tel" name="phone" value={formData.phone} onChange={handleChange} required placeholder="+1 (555) 000-0000" />
+        <form onSubmit={handleSubmit}>
+          <div style={{ marginBottom: '2rem' }}>
+            <label>FULL NAME</label>
+            <input type="text" name="name" value={formData.name} onChange={handleChange} required />
           </div>
-          <div>
-            <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--on-surface-variant)' }}>Garment Type</label>
-            <select name="garmentType" value={formData.garmentType} onChange={handleChange}>
-              <option value="Bridal">Bridal</option>
-              <option value="Evening Wear">Evening Wear</option>
-              <option value="Casual Luxury">Casual Luxury</option>
-              <option value="Accessories">Accessories</option>
-              <option value="Other">Other</option>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', marginBottom: '2rem' }}>
+            <div>
+              <label>EMAIL</label>
+              <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+            </div>
+            <div>
+              <label>PHONE</label>
+              <input type="tel" name="phone" value={formData.phone} onChange={handleChange} required />
+            </div>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', marginBottom: '2rem' }}>
+            <div>
+              <label>GARMENT TYPE</label>
+              <select name="garmentType" value={formData.garmentType} onChange={handleChange} required>
+                <option value="">Select type</option>
+                <option value="lehenga">Lehenga</option>
+                <option value="saree">Saree</option>
+                <option value="gown">Gown</option>
+                <option value="blouse">Blouse</option>
+                <option value="suit">Suit / Sherwani</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div>
+              <label>BUDGET RANGE</label>
+              <select name="budget" value={formData.budget} onChange={handleChange} required>
+                <option value="">Select budget</option>
+                <option value="under-10k">Under ₹10,000</option>
+                <option value="10k-25k">₹10,000 – ₹25,000</option>
+                <option value="25k-50k">₹25,000 – ₹50,000</option>
+                <option value="50k-1l">₹50,000 – ₹1,00,000</option>
+                <option value="above-1l">Above ₹1,00,000</option>
+              </select>
+            </div>
+          </div>
+          <div style={{ marginBottom: '2rem' }}>
+            <label>TIMELINE</label>
+            <select name="timeline" value={formData.timeline} onChange={handleChange} required>
+              <option value="">When do you need it?</option>
+              <option value="2-weeks">Within 2 weeks</option>
+              <option value="1-month">Within 1 month</option>
+              <option value="2-months">Within 2 months</option>
+              <option value="flexible">Flexible</option>
             </select>
           </div>
-        </div>
-
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '1.5rem' }}>
-          <div>
-            <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--on-surface-variant)' }}>Expected Timeline</label>
-            <input type="text" name="timeline" value={formData.timeline} onChange={handleChange} placeholder="e.g. 3 Months" />
+          <div style={{ marginBottom: '3rem' }}>
+            <label>DESCRIBE YOUR VISION</label>
+            <textarea name="details" rows={5} value={formData.details} onChange={handleChange}
+              placeholder="Fabric preferences, design inspiration, occasion details..."
+              style={{ resize: 'vertical', borderBottom: '1px solid var(--border)' }}
+            />
           </div>
-          <div>
-            <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--on-surface-variant)' }}>Estimated Budget</label>
-            <input type="text" name="budget" value={formData.budget} onChange={handleChange} placeholder="e.g. $2,000 - $5,000" />
-          </div>
-        </div>
-
-        <div style={{ marginBottom: '2rem' }}>
-          <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--on-surface-variant)' }}>Design Details & Inspiration</label>
-          <textarea 
-            name="details" 
-            value={formData.details} 
-            onChange={handleChange} 
-            rows="5" 
-            placeholder="Describe your vision, preferred fabrics, or silhouette..."
-          ></textarea>
-        </div>
-
-        <div className="text-center">
-          <button type="submit" className="btn btn-primary" style={{ width: '100%', padding: '1rem' }}>
+          <button type="submit" className="btn btn-gold" style={{ width: '100%', padding: '1.1rem' }}>
             Submit Request
           </button>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 };

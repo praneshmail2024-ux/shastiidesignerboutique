@@ -1,62 +1,118 @@
 import { Link } from 'react-router-dom';
-import { Mail, Phone, Instagram, MapPin } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer style={{ backgroundColor: 'var(--surface-container-highest)', padding: '4rem 0', marginTop: '4rem', borderTop: '1px solid var(--outline-variant)' }}>
-      <div className="container" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '3rem' }}>
-        
+    <footer style={{
+      borderTop: '1px solid var(--border-light)',
+      padding: '4rem 0 2rem',
+      marginTop: 'auto',
+    }}>
+      <div style={{
+        maxWidth: 'var(--container-max)',
+        margin: '0 auto',
+        padding: '0 var(--gutter)',
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+        gap: '3rem',
+      }}>
+        {/* Brand */}
         <div>
-          <h3 style={{ fontFamily: 'var(--font-display)', color: 'var(--primary-container)', marginBottom: '1.5rem', fontSize: '1.5rem' }}>
-            Sashtii Boutique
+          <h3 style={{
+            fontFamily: 'var(--font-display)',
+            fontSize: '1.5rem',
+            fontWeight: 400,
+            color: 'var(--text-primary)',
+            marginBottom: '0.25rem',
+          }}>
+            Sashtii
           </h3>
-          <p className="text-muted" style={{ marginBottom: '1.5rem', lineHeight: '1.6' }}>
-            A high-end atelier dedicated to the art of custom fashion. We believe that true luxury lies in a garment that is made exclusively for you.
+          <p style={{
+            fontFamily: 'var(--font-body)',
+            fontSize: '0.6rem',
+            fontWeight: 600,
+            letterSpacing: '0.3em',
+            textTransform: 'uppercase',
+            color: 'var(--gold)',
+            marginBottom: '1.5rem',
+          }}>
+            BOUTIQUE ATELIER
           </p>
-          <div style={{ display: 'flex', gap: '1rem' }}>
-            <a href="#" style={{ color: 'var(--on-surface-variant)' }}><Instagram size={20} /></a>
+          <p style={{
+            fontSize: '0.9rem',
+            lineHeight: 1.7,
+            color: 'var(--text-secondary)',
+          }}>
+            A high-end atelier dedicated to the art of custom fashion, crafted exclusively for you.
+          </p>
+        </div>
+
+        {/* Contact */}
+        <div>
+          <h4 style={{
+            fontFamily: 'var(--font-body)',
+            fontSize: '0.75rem',
+            fontWeight: 600,
+            letterSpacing: '0.15em',
+            textTransform: 'uppercase',
+            color: 'var(--text-primary)',
+            marginBottom: '1.5rem',
+          }}>
+            Contact
+          </h4>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+            <a href="mailto:sashtiidesignerboutique@gmail.com" style={{
+              fontSize: '0.9rem',
+              color: 'var(--text-secondary)',
+              textDecoration: 'none',
+            }}>
+              sashtiidesignerboutique@gmail.com
+            </a>
+            <a href="tel:7338873316" style={{
+              fontSize: '0.9rem',
+              color: 'var(--text-secondary)',
+              textDecoration: 'none',
+            }}>
+              +91 7338873316
+            </a>
+            <span style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
+              Chennai, India
+            </span>
           </div>
         </div>
 
+        {/* Quick Links */}
         <div>
-          <h4 style={{ fontFamily: 'var(--font-display)', color: 'var(--on-surface)', marginBottom: '1.5rem', textTransform: 'uppercase', letterSpacing: '1px' }}>
-            Contact Us
-          </h4>
-          <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <li style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'var(--on-surface-variant)' }}>
-              <Mail size={16} /> 
-              <a href="mailto:sashtiidesignerboutique@gmail.com" style={{ color: 'inherit', textDecoration: 'none' }}>
-                sashtiidesignerboutique@gmail.com
-              </a>
-            </li>
-            <li style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'var(--on-surface-variant)' }}>
-              <Phone size={16} /> 
-              <a href="tel:7338873316" style={{ color: 'inherit', textDecoration: 'none' }}>
-                7338873316
-              </a>
-            </li>
-            <li style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'var(--on-surface-variant)' }}>
-              <MapPin size={16} /> 
-              <span>Chennai, India</span>
-            </li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 style={{ fontFamily: 'var(--font-display)', color: 'var(--on-surface)', marginBottom: '1.5rem', textTransform: 'uppercase', letterSpacing: '1px' }}>
+          <h4 style={{
+            fontFamily: 'var(--font-body)',
+            fontSize: '0.75rem',
+            fontWeight: 600,
+            letterSpacing: '0.15em',
+            textTransform: 'uppercase',
+            color: 'var(--text-primary)',
+            marginBottom: '1.5rem',
+          }}>
             Quick Links
           </h4>
-          <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-            <li><Link to="/catalog" style={{ color: 'var(--on-surface-variant)', textDecoration: 'none' }}>The Collection</Link></li>
-            <li><Link to="/request-quote" style={{ color: 'var(--on-surface-variant)', textDecoration: 'none' }}>Request Quote</Link></li>
-            <li><Link to="/book-appointment" style={{ color: 'var(--on-surface-variant)', textDecoration: 'none' }}>Book Appointment</Link></li>
-            <li><Link to="/login" style={{ color: 'var(--on-surface-variant)', textDecoration: 'none' }}>Customer Login</Link></li>
-          </ul>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+            <Link to="/catalog" style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>Collection</Link>
+            <Link to="/request-quote" style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>Request Quote</Link>
+            <Link to="/book-appointment" style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>Book Appointment</Link>
+            <Link to="/login" style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>Sign In</Link>
+          </div>
         </div>
-
       </div>
-      <div className="container" style={{ marginTop: '4rem', paddingTop: '2rem', borderTop: '1px solid var(--outline-variant)', textAlign: 'center', color: 'var(--on-surface-variant)', fontSize: '0.85rem' }}>
-        &copy; {new Date().getFullYear()} Sashtii Designer Boutique. All rights reserved.
+
+      {/* Copyright */}
+      <div style={{
+        maxWidth: 'var(--container-max)',
+        margin: '3rem auto 0',
+        padding: '2rem var(--gutter) 0',
+        borderTop: '1px solid var(--border-light)',
+        textAlign: 'center',
+        fontSize: '0.8rem',
+        color: 'var(--text-muted)',
+      }}>
+        © {new Date().getFullYear()} Sashtii Designer Boutique. All rights reserved.
       </div>
     </footer>
   );
