@@ -1,8 +1,15 @@
-import { Outlet, Link, useLocation } from 'react-router-dom';
+import { Outlet, Link, useLocation, Navigate } from 'react-router-dom';
 import { LayoutDashboard, Users, FileText, Package, CheckSquare, Truck, Settings, FileBox, LogOut } from 'lucide-react';
+import { useAdminAuth } from '../context/AdminAuthContext';
 
 const AdminLayout = () => {
   const location = useLocation();
+  const { isAuthenticated, logout } = useAdminAuth();
+
+  // Redirect to admin login if not authenticated
+  if (!isAuthenticated) {
+    return <Navigate to="/admin-login" replace />;
+  }
 
   const navigation = [
     { name: 'Dashboard', href: '/admin', icon: LayoutDashboard },
@@ -15,16 +22,50 @@ const AdminLayout = () => {
     { name: 'Settings', href: '/admin/settings', icon: Settings },
   ];
 
+  const handleLogout = () => {
+    logout();
+  };
+
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: 'var(--color-primary)' }}>
+    <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#fafafa' }}>
       {/* Sidebar */}
-      <aside style={{ width: '250px', backgroundColor: 'var(--color-secondary)', borderRight: '1px solid var(--color-blush-dark)', display: 'flex', flexDirection: 'column' }}>
-        <div style={{ padding: '2rem', borderBottom: '1px solid var(--color-blush-dark)' }}>
-          <h2 style={{ color: 'var(--color-gold)', margin: 0, fontSize: '1.5rem', fontFamily: 'var(--font-heading)' }}>Sashtii Admin</h2>
+      <aside style={{
+        width: '260px',
+        backgroundColor: '#1a1a1a',
+        display: 'flex',
+        flexDirection: 'column',
+        flexShrink: 0,
+      }}>
+        {/* Brand */}
+        <div style={{
+          padding: '2rem 1.5rem',
+          borderBottom: '1px solid rgba(255,255,255,0.08)',
+        }}>
+          <h2 style={{
+            fontFamily: 'var(--font-display)',
+            fontSize: '1.4rem',
+            fontWeight: 400,
+            color: '#ffffff',
+            margin: 0,
+          }}>
+            Sashtii
+          </h2>
+          <p style={{
+            fontFamily: 'var(--font-body)',
+            fontSize: '0.6rem',
+            fontWeight: 600,
+            letterSpacing: '0.3em',
+            textTransform: 'uppercase',
+            color: 'var(--gold)',
+            margin: 0,
+          }}>
+            ADMIN PORTAL
+          </p>
         </div>
         
+        {/* Navigation */}
         <nav style={{ flex: 1, padding: '1rem 0' }}>
-          <ul style={{ listStyle: 'none', padding: 0 }}>
+          <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
             {navigation.map((item) => {
               const isActive = location.pathname === item.href;
               return (
@@ -34,17 +75,20 @@ const AdminLayout = () => {
                     style={{
                       display: 'flex',
                       alignItems: 'center',
-                      padding: '0.8rem 2rem',
-                      color: isActive ? 'var(--color-gold)' : 'var(--color-text)',
-                      backgroundColor: isActive ? 'var(--color-gold-dim)' : 'transparent',
+                      padding: '0.75rem 1.5rem',
+                      color: isActive ? 'var(--gold)' : 'rgba(255,255,255,0.5)',
+                      backgroundColor: isActive ? 'rgba(184,151,62,0.1)' : 'transparent',
                       textDecoration: 'none',
-                      borderLeft: isActive ? '3px solid var(--color-gold)' : '3px solid transparent',
+                      borderLeft: isActive ? '2px solid var(--gold)' : '2px solid transparent',
                       transition: 'all 0.2s ease',
-                      gap: '0.8rem'
+                      gap: '0.75rem',
+                      fontFamily: 'var(--font-body)',
+                      fontSize: '0.85rem',
+                      fontWeight: 500,
                     }}
                   >
-                    <item.icon size={20} />
-                    <span style={{ fontFamily: 'var(--font-body)', fontSize: '0.9rem' }}>{item.name}</span>
+                    <item.icon size={18} />
+                    <span>{item.name}</span>
                   </Link>
                 </li>
               );
@@ -52,16 +96,49 @@ const AdminLayout = () => {
           </ul>
         </nav>
 
-        <div style={{ padding: '1rem 2rem', borderTop: '1px solid var(--color-blush-dark)' }}>
-          <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', color: 'var(--color-text-muted)' }}>
-            <LogOut size={20} />
-            <span style={{ fontSize: '0.9rem' }}>Back to Store</span>
+        {/* Bottom actions */}
+        <div style={{
+          padding: '1rem 1.5rem',
+          borderTop: '1px solid rgba(255,255,255,0.08)',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '0.75rem',
+        }}>
+          <Link to="/" style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.75rem',
+            color: 'rgba(255,255,255,0.4)',
+            textDecoration: 'none',
+            fontSize: '0.85rem',
+            fontFamily: 'var(--font-body)',
+          }}>
+            <LogOut size={18} />
+            <span>Back to Store</span>
           </Link>
+          <button
+            onClick={handleLogout}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.75rem',
+              color: '#e57373',
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              fontSize: '0.85rem',
+              fontFamily: 'var(--font-body)',
+              padding: 0,
+            }}
+          >
+            <LogOut size={18} />
+            <span>Logout</span>
+          </button>
         </div>
       </aside>
 
       {/* Main content */}
-      <main style={{ flex: 1, padding: '2rem', overflowY: 'auto' }}>
+      <main style={{ flex: 1, padding: '2rem 2.5rem', overflowY: 'auto' }}>
         <Outlet />
       </main>
     </div>

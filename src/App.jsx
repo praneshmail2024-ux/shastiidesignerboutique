@@ -11,17 +11,17 @@ import Login from './pages/Login';
 import CustomerProfile from './pages/CustomerProfile';
 
 // Admin Portal Pages
+import AdminLoginPage from './pages/admin/AdminLoginPage';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import CustomerManagement from './pages/admin/CustomerManagement';
 import ProductsCMS from './pages/admin/ProductsCMS';
 
 // Placeholder components for Admin Portal
-const Billing = () => <div style={{ padding: '2rem' }}><h1>Billing & Invoices</h1></div>;
-const Quotations = () => <div style={{ padding: '2rem' }}><h1>Quotations</h1></div>;
-const Orders = () => <div style={{ padding: '2rem' }}><h1>Order Tracking</h1></div>;
-const CMS = () => <div style={{ padding: '2rem' }}><h1>Website Content (CMS)</h1></div>;
-const Settings = () => <div style={{ padding: '2rem' }}><h1>Settings</h1></div>;
-const AdminLogin = () => <div style={{ padding: '2rem' }}><h1>Admin Login Secure</h1></div>;
+const Billing = () => <div style={{ padding: '2rem' }}><h1 style={{ fontFamily: 'var(--font-display)', fontWeight: 400 }}>Billing & Invoices</h1><p style={{ color: 'var(--text-secondary)', marginTop: '0.5rem' }}>Coming soon...</p></div>;
+const Quotations = () => <div style={{ padding: '2rem' }}><h1 style={{ fontFamily: 'var(--font-display)', fontWeight: 400 }}>Quotations</h1><p style={{ color: 'var(--text-secondary)', marginTop: '0.5rem' }}>Coming soon...</p></div>;
+const Orders = () => <div style={{ padding: '2rem' }}><h1 style={{ fontFamily: 'var(--font-display)', fontWeight: 400 }}>Order Tracking</h1><p style={{ color: 'var(--text-secondary)', marginTop: '0.5rem' }}>Coming soon...</p></div>;
+const CMS = () => <div style={{ padding: '2rem' }}><h1 style={{ fontFamily: 'var(--font-display)', fontWeight: 400 }}>Website Content (CMS)</h1><p style={{ color: 'var(--text-secondary)', marginTop: '0.5rem' }}>Coming soon...</p></div>;
+const Settings = () => <div style={{ padding: '2rem' }}><h1 style={{ fontFamily: 'var(--font-display)', fontWeight: 400 }}>Settings</h1><p style={{ color: 'var(--text-secondary)', marginTop: '0.5rem' }}>Coming soon...</p></div>;
 
 function App() {
   return (
@@ -38,8 +38,10 @@ function App() {
         <Route path="profile" element={<CustomerProfile />} />
       </Route>
 
-      {/* Admin Portal */}
-      <Route path="/admin-login" element={<AdminLogin />} />
+      {/* Admin Login (standalone, no layout) */}
+      <Route path="/admin-login" element={<AdminLoginPage />} />
+
+      {/* Admin Portal (protected by AdminLayout) */}
       <Route path="/admin" element={<AdminLayout />}>
         <Route index element={<AdminDashboard />} />
         <Route path="customers" element={<CustomerManagement />} />
